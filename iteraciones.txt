@@ -1,0 +1,33 @@
+
+php artisan make:model Publicaciones -m
+
+https://codea.app/android/app-android-retrofit-laravel
+
+
+-------------
+AppServiceProvider
+-------------------
+
+https://laravel-news.com/laravel-5-4-key-too-long-error
+
+
+--------------------
+
+---------------------
+
+composer create-project laravel/laravel arequipa --prefer-dist
+cd arequipa
+code .
+php artisan make:model Publicaciones -m
+
+php artisan migrate
+
+php artisan make:controller PublicacionesController
+
+php artisan serve
+
+---------------------
+Trabajando en el android
+-------------------------
+https://square.github.io/retrofit/
+https://developer.android.com/guide/topics/ui/layout/cardview?hl=es-419
