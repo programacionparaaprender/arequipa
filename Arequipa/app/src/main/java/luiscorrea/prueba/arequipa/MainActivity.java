@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnEntrar;
+    private Button buttonMapa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,5 +22,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),PublicacionesActivity.class));
             }
         });
+
+        buttonMapa = findViewById(R.id.buttonMapa);
+        buttonMapa.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MarkerDemoActivity.class));
+            }
+        });
+
     }
 }
