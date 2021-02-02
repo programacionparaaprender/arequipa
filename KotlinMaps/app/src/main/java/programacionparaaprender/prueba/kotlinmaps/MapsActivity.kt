@@ -12,12 +12,17 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolygonOptions
+import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
     private lateinit var btnLimpiar: Button
+
+    private lateinit var  coordenadas: LinkedList<LatLng>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -31,19 +36,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onClick(v:View) {
                 //startActivity(new Intent(getApplicationContext(),MapsActivity.class));
                 mMap.clear()
+                coordenadas.clear()
             }
         });
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -52,31 +49,52 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         //mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
+        coordenadas = LinkedList<LatLng>()
+
         mMap!!.setOnMapClickListener(object : GoogleMap.OnMapClickListener {
-            override fun onMapClick(latLng: LatLng) {
-                //currentMarker = null
-                val marcaOpcion = MarkerOptions()
-                    .position(latLng)
-                //.title("Brisbane")
-                //marca.setPosition(arg0);
-                val marca = mMap.addMarker(marcaOpcion)
+            override fun onMapClick(latLng1: LatLng) {
+                /*
+                val marcaOpcion1:MarkerOptions
+                marcaOpcion1 = MarkerOptions()
+                    .position(latLng1)
+                val marca = mMap.addMarker(marcaOpcion1)
                 marca.setTag(0)
+
+                return
+                */
+                coordenadas.add(latLng1)
+                mMap.clear()
+                val pol = PolygonOptions()
+                pol.clickable(true)
+
+                //pol.add(coordenadas);
+                /*
+                for (coor in coordenadas)
+                {
+                    val marcaOpcion:MarkerOptions
+                    marcaOpcion = MarkerOptions()
+                        .position(coor)
+                    val marca = mMap.addMarker(marcaOpcion)
+                    marca.setTag(0)
+                    pol.add(coor)
+                }*/
+                val positionIterator = coordenadas.iterator()
+                while (positionIterator.hasNext()) {
+                    val coor: LatLng
+                    coor = positionIterator.next()
+                    val marcaOpcion:MarkerOptions
+                    marcaOpcion = MarkerOptions()
+                        .position(coor)
+                    val marca = mMap.addMarker(marcaOpcion)
+                    marca.setTag(0)
+                    pol.add(coor)
+                }
+                val polygon1 = mMap.addPolygon(pol)
+                polygon1.setTag("alpha")
+
+
             }
         })
-        /*
-        mMap.setOnMapClickListener {
-            GoogleMap.OnMapClickListener {
-                p0 -> Log.d("Map", p0.toString())
-                //android.util.Log.i("onMapClick", "Horray!")
-                val marcaOpcion = MarkerOptions()
-                    .position(LatLng(p0.latitude,p0.longitude))
-                //.title("Brisbane")
-                //marca.setPosition(arg0);
-                val marca = mMap.addMarker(marcaOpcion)
-                marca.setTag(0)
-            }
-        }
 
-         */
     }
 }

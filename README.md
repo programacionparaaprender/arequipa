@@ -22,3 +22,15 @@ https://github.com/moe-java-samples/moe-kotlin-samples/blob/master/KotlinMuseumM
 
 ### poligonos google maps
 https://developers.google.com/maps/documentation/android-sdk/polygon-tutorial?hl=es-419
+
+
+### loops en kotlin
+https://www.tutorialkart.com/kotlin/loops-in-kotlin-with-examples/
+
+
+### iteradores en kotlin
+https://kotlinlang.org/docs/reference/iterators.html
+
+
+### convertidor de java a kotlin
+https://try.kotlinlang.org/#/Kotlin%20Koans/Introduction/Java%20to%20Kotlin%20conversion/Task.kt

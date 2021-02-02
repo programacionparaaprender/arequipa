@@ -105,52 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapClick(LatLng arg0)
             {
                 android.util.Log.i("onMapClick", "Horray!");
-                MarkerOptions marcaOpcion;
-                marcaOpcion = new MarkerOptions()
-                    .position(arg0);
-                //.title("Brisbane")
-                //marca.setPosition(arg0);
-                Marker marca = mMap.addMarker(marcaOpcion);
-                marca.setTag(0);
-            }
-        });
 
-    }
-    public void onMapReady2(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-
-
-
-        // Add some markers to the map, and add a data object to each marker.
-        mPerth = mMap.addMarker(new MarkerOptions()
-            .position(PERTH)
-            .title("Perth"));
-        mPerth.setTag(0);
-
-        mSydney = mMap.addMarker(new MarkerOptions()
-            .position(SYDNEY)
-            .title("Sydney"));
-        mSydney.setTag(0);
-
-        mBrisbane = mMap.addMarker(new MarkerOptions()
-            .position(BRISBANE)
-            .title("Brisbane"));
-        mBrisbane.setTag(0);
-
-        // Set a listener for marker click.
-        //mMap.setOnMarkerClickListener(this);
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
-        {
-            @Override
-            public void onMapClick(LatLng arg0)
-            {
-                android.util.Log.i("onMapClick", "Horray!");
                 coordenadas.add(arg0);
                 mMap.clear();
 
@@ -161,10 +116,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 PolygonOptions pol =new PolygonOptions();
                 pol.clickable(true);
 
+                /*
                 pol.strokePattern(pattern);
                 pol.strokeWidth(POLYGON_STROKE_WIDTH_PX);
                 pol.strokeColor(strokeColor);
                 pol.fillColor(fillColor);
+                */
+                //pol.add(coordenadas);
 
                 for(LatLng coor:coordenadas){
                     MarkerOptions marcaOpcion;
@@ -180,17 +138,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 // Store a data object with the polygon, used here to indicate an arbitrary type.
                 polygon1.setTag("alpha");
 
+                /*
                 polygon1.setStrokePattern(pattern);
                 polygon1.setStrokeWidth(POLYGON_STROKE_WIDTH_PX);
                 polygon1.setStrokeColor(strokeColor);
                 polygon1.setFillColor(fillColor);
-
-
-
+                */
             }
         });
 
     }
+
     /** Called when the user clicks a marker. */
     @Override
     public boolean onMarkerClick(final Marker marker) {
