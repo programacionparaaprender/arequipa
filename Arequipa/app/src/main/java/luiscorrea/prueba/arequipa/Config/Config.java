@@ -9,7 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Config {
     //private static final String BASEURL = "http://192.168.0.54/arequipa/public/api/";
     //private static final String BASEURL = "http://192.168.0.6/arequipa/public/api/";
-private static final String BASEURL = "http://192.168.168.2/arequipa/public/api/";
+//private static final String BASEURL = "http://192.168.168.2/arequipa/public/api/";
+    private static final String BASEURL = "http://192.168.0.5/arequipa/public/api/";
     //private static final String BASEURL = "http://localhost/arequipa/public/api/";
     private static Retrofit retrofit;
 
